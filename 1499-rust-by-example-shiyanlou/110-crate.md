@@ -1,0 +1,67 @@
+# crate
+
+crate（中文有 “包，包装箱” 之意）是 Rust 的编译单元。当调用 `rustc some_file.rs`
+ 时，`some_file.rs` 被当作 **crate 文件**。如果 `some_file.rs` 里面含有 `mod`
+ 声明，那么模块文件的内容将在编译之前被插入 crate 文件的相应声明处。换句话说，模
+块**不会**单独被编译，只有 crate 才会被编译。
+
+crate 可以编译成二进制可执行文件（binary）或库文件（library）。默认情况
+下，`rustc` 将从 crate 产生二进制可执行文件。这种行为可以通过 `rustc` 的选项 `--crate-type`
+ 重载。
+# 库
+
+让我们创建一个库，然后看看如何把它链接到另一个 crate。
+
+```rust,editable
+pub fn public_function() {
+    println!("called rary's `public_function()`");
+}
+
+fn private_function() {
+    println!("called rary's `private_function()`");
+}
+
+pub fn indirect_access() {
+    print!("called rary's `indirect_access()`, that\n> ");
+
+    private_function();
+}
+```
+
+```bash
+$ rustc --crate-type=lib rary.rs
+$ ls lib*
+library.rlib
+```
+
+默认情况下，库会使用 crate 文件的名字，前面加上 “lib” 前缀，但这个默认名称可以
+使用 [`crate_name` 属性][crate-name] 覆盖。
+
+[crate-name]: ../attribute/crate.md
+# `extern crate`
+
+要把上一节创建的库链接到一个 crate，必须使用 `extern crate` 声明。这不仅会
+链接库，还会用一个与库名相同的模块来存放库里面的所有项。于模块的可见性规则也
+适用于库。
+
+```rust,ignore
+// 链接到 `rary` 库，导入其中的项
+extern crate rary;
+
+fn main() {
+    rary::public_function();
+
+    // 报错！ `private_function` 是私有的
+    //rary::private_function();
+
+    rary::indirect_access();
+}
+```
+
+```bash
+# library.rlib 是已编译好的库的路径，这里假设它在同一目录下：
+$ rustc executable.rs --extern rary=library.rlib && ./executable
+called rary's `public_function()`
+called rary's `indirect_access()`, that
+> called rary's `private_function()`
+```
