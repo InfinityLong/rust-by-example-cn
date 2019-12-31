@@ -1,4 +1,12 @@
+---
+show: step
+version: 1.0
+enable_checker: true
+---
+
 # cargo
+
+## 实验介绍
 
 `cargo` 是官方的 Rust 包管理工具。 它有很多非常有用的功能来提高代码质量和开发人员的开发效率！ 这些功能包括：
 
@@ -7,7 +15,17 @@
 - 方便的基准测试
 
 本章将介绍一些快速入门的基础知识，不过你可以在 [cargo 官方手册](https://doc.rust-lang.org/cargo/)中找到详细内容。
-# 依赖
+
+#### 知识点
+
+本节实验的主要内容包括以下 Cargo 相关的知识点：
+
+* 依赖
+* 约定规范
+* 测试
+* 构建脚本
+
+## 依赖
 
 大多数程序都会依赖于某些库。如果你曾经手动管理过库依赖，那么你就知道这会带来的极大的痛苦。幸运的是，Rust 的生态链标配 `cargo` 工具！`cargo` 可以管理项目的依赖关系。
 
@@ -75,9 +93,7 @@ bar = { path = "../bar" } # 来自本地文件系统的路径
 瞧！这里的所有都和 `cargo` 有关！
 
 
-[manifest]: https://doc.rust-lang.org/cargo/reference/manifest.html
-[dependencies]: https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html
-# 约定规范
+## 约定规范
 
 在上一小节中，我们看到了以下目录层次结构：
 
@@ -107,8 +123,7 @@ foo
 
 在下一节中，我们将更仔细地学习测试的内容。
 
-[more features]: https://doc.rust-lang.org/cargo/guide/project-layout.html
-# 测试
+## 测试
 
 我们知道测试是任何软件不可缺少的一部分！Rust 对单元和集成测试提供一流的支持（参见《Rust 程序设计语言》中的关于[测试的章节](https://doc.rust-lang.org/book/ch11-00-testing.html)）。
 
@@ -169,7 +184,8 @@ test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out
 ```
 
 需要注意的一点是：`cargo` 可能同时进行多项测试，因此请确保它们不会相互竞争。例如，如果它们都输出到文件，则应该将它们写入不同的文件。
-# 构建脚本
+
+## 构建脚本
 
 有时使用 `cargo` 正常构建还是不够的。也许你的 crate 在 cargo 成功编译之前需要一些先决条件，比如代码生成或者需要编译的一些本地代码。为了解决这个问题，我们构建了 cargo 可以运行的脚本。
 
@@ -183,18 +199,24 @@ build = "build.rs"
 
 跟默认情况不同，这里 cargo 将在项目目录中优先查找 `build.rs` 文件。（本句采用意译，英文原文为：Otherwise Cargo will look for a `build.rs` file in the project directory by default.）
 
-## 怎么使用构建脚本
+### 怎么使用构建脚本
 
 构建脚本只是另一个 Rust 文件，此文件将在编译包中的任何其他内容之前，优先进行编译和调用。 因此，此文件可实现满足 crate 的先决条件。
 
-cargo 通过[此处指定][specified
-here]的可以使用的环境变量为脚本提供输入。（英文原文：Cargo provides the script with inputs via environment variables [specified
-here] that can be used.）
+cargo 通过[此处指定](https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-build-scripts)的可以使用的环境变量为脚本提供输入。（英文原文：Cargo provides the script with inputs via environment variables [specified
+here](https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-build-scripts) that can be used.）
 
 此脚本通过 stdout （标准输出）提供输出。打印的所有行都写入到 `target/debug/build/<pkg>/output`。另外，以 `cargo:` 为前缀的行将由 cargo 直接解析，因此可用于定义包编译的参数。
 
-有关进一步的说明和示例，请阅读 [cargo 规定说明文档][cargo specification]。
+有关进一步的说明和示例，请阅读 [cargo 规定说明文档](https://doc.rust-lang.org/cargo/reference/build-scripts.html)。
 
-[specified here]: https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-build-scripts
+## 实验总结
 
-[cargo specification]: https://doc.rust-lang.org/cargo/reference/build-scripts.html
+本节实验中我们学习了以下 Cargo 相关的内容：
+
+* 依赖
+* 约定规范
+* 测试
+* 构建脚本
+
+请务必按照实验步骤将示例代码在实验环境中完整输入一遍，并完成动手练习题目。只有真正动手去做才会有最大的收获，遇到问题欢迎在 [实验楼讨论区](https://www.shiyanlou.com/questions/) 中发帖与同学讨论交流。

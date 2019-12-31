@@ -12,7 +12,7 @@
 
 如果希望以在线实验的形式完成 Rust By Example 的学习，可以进入到实验楼的课程 [《通过例子学 Rust》](https://www.shiyanlou.com/courses/1499)。
 
-如果想在线阅读《通过例子学 Rust》，可以直接访问 [https://rustwiki.org/zh-CN/rust-by-example/][https://rustwiki.org/zh-CN/rust-by-example/] 进行在线上阅读。（英文阅读地址：[https://doc.rust-lang.org/rust-by-example/][https://doc.rust-lang.org/rust-by-example/]）
+如果想在线阅读《通过例子学 Rust》，可以直接访问 [https://rustwiki.org/zh-CN/rust-by-example/](https://rustwiki.org/zh-CN/rust-by-example/) 进行在线上阅读。（英文阅读地址：[https://doc.rust-lang.org/rust-by-example/](https://doc.rust-lang.org/rust-by-example/)）
 
 ## 授权协议
 

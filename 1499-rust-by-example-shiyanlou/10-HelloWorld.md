@@ -10,9 +10,9 @@ enable_checker: true
 
 [Rust][http://www.rust-lang.org/] 是一门注重安全（safety）、速度（speed）和并发（concurrency）的现代系统编程语言。Rust 通过内存安全来实现以上目标，但不用垃圾回收机制（garbage collection, GC)。
 
-《通过例子学 Rust》（Rust By Example, RBE）内容由一系列可运行的实例组成，通过这些例子阐明了各种 Rust 的概念和基本库。想获取这些例子外的更多内容，不要忘了[安装 Rust 到本地][https://www.rust-lang.org/tools/install]并查阅[官方标准库文档][http://doc.rust-lang.org/std/]。另外为了满足您的好奇心，你可以[查阅本网站的源代码][https://github.com/rust-lang-cn/rust-by-example-cn]。
+《通过例子学 Rust》（Rust By Example, RBE）内容由一系列可运行的实例组成，通过这些例子阐明了各种 Rust 的概念和基本库。想获取这些例子外的更多内容，可以 [安装 Rust 到本地](https://www.rust-lang.org/tools/install) 并查阅 [官方标准库文档](http://doc.rust-lang.org/std/)。
 
-本课程为《通过例子学 Rust》的在线实验版本，通过在线实验一系列程序例子，一步步完成 Rust 编程语言的入门。
+本课程为《通过例子学 Rust》的在线实验版本，通过在线实验一系列程序例子，一步步完成 Rust 编程语言的入门。欢迎在课程仓库中参与修订和完善，仓库地址见 [通过例子学 Rust - 在线实验版](https://github.com/shiyanlou/rust-by-example-cn)。所有文档内容版权跟随中文及英文原文档的版权（版权为 MIT 协议 或 Apache 协议）。
 
 实验内容基于 [Rust By Example 中文版](https://github.com/rust-lang-cn/rust-by-example-cn) 进行制作和改编。感谢英文原版以及中文版本所有贡献者，让我们能够通过该教程快速入门 Rust 编程语言。
 
@@ -29,6 +29,15 @@ enable_checker: true
 
 除非您有另外说明，否则您在本仓库提交的任何贡献均按上述方式进行双重许可授权，就如 Apache 2.0 协议所规定那样，而无需附加任何其他条款或条件。
 
+#### 知识点
+
+本节实验的主要内容包括以下知识点：
+
+- 课程介绍
+- 如何编写第一个程序
+- Hello World 程序详解
+- 注释
+- 格式化输出
 
 ### 实验列表
 
@@ -83,6 +92,7 @@ fn main() {
     println!("Hello World!");
 }
 ```
+
 
 代码输入完成后，可以保存代码文件到 `/home/shiyanlou/hello.rs` 路径。
 
@@ -545,4 +555,16 @@ RGB (0, 0, 0) 0x000000
 
  * 你[可能需要多次列出每个颜色](http://doc.rust-lang.org/std/fmt/#argument-types])，
  * 你可以使用 `:02` [补零使位数为 2 位](http://doc.rust-lang.org/std/fmt/#width)。
+
+## 实验总结
+
+本节实验中我们学习了以下的内容：
+
+- 课程介绍
+- 如何编写第一个程序
+- Hello World 程序详解
+- 注释
+- 格式化输出
+
+请务必按照实验步骤将示例代码在实验环境中完整输入一遍，并完成动手练习题目。只有真正动手去做才会有最大的收获，遇到问题欢迎在 [实验楼讨论区](https://www.shiyanlou.com/questions/) 中发帖与同学讨论交流。
 

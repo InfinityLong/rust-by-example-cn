@@ -1,4 +1,27 @@
+---
+show: step
+version: 1.0
+enable_checker: true
+---
+
 # 特性 trait
+
+## 实验介绍
+
+本节实验中学习 Rust 编程语言中的特性 `trait`，`trait` 是对未知类型 `Self` 定义的方法集。该类型也可以访问同一个 trait 中定义的其他方法。
+
+#### 知识点
+
+本节实验的主要内容包括以下知识点：
+
+* trait 概念
+* 推导
+* 运算符重载
+* Drop
+* Iterators
+* Clone
+
+## trait 概念
 
 `trait` 是对未知类型 `Self` 定义的方法集。该类型也可以访问同一个 trait 中定义的
 其他方法。
@@ -77,20 +100,20 @@ fn main() {
     dolly.talk();
 }
 ```
-# 推导
 
-通过 `#[derive]` [属性][attribute]，编译器能够提供某些 trait 的基本实现。如果
+## 推导
+
+通过 `#[derive]` 属性，编译器能够提供某些 trait 的基本实现。如果
 需要更复杂的行为，这些 trait 也可以手动实现。
 
 下面以下是可以自动推导的 trait：
 
-* 比较 trait:
-  [`Eq`][eq], [`PartialEq`][partial-eq], [`Ord`][ord], [`PartialOrd`][partial-ord]
-* [`Clone`][clone], 用来从 `&T` 创建副本 `T`。
-* [`Copy`][copy]，使类型具有 “复制语义”（copy semantics）而非 “移动语义”（move semantics）。
-* [`Hash`][hash]，从 `&T` 计算哈希值（hash）。
-* [`Default`][default], 创建数据类型的一个空实例。
-* [`Debug`][debug]，使用 `{:?}` formatter 来格式化一个值。
+* 比较 trait:`Eq`, `PartialEq`, `Ord`, `PartialOrd`
+* `Clone`, 用来从 `&T` 创建副本 `T`。
+* `Copy`，使类型具有 “复制语义”（copy semantics）而非 “移动语义”（move semantics）。
+* `Hash`，从 `&T` 计算哈希值（hash）。
+* `Default`, 创建数据类型的一个空实例。
+* `Debug`，使用 `{:?}` formatter 来格式化一个值。
 
 ```rust,editable
 // `Centimeters`，可以比较的元组结构体
@@ -140,22 +163,7 @@ fn main() {
 }
 ```
 
-### 参见
-
-[`derive`][derive]
-
-[attribute]: ../attribute.md
-[eq]: https://doc.rust-lang.org/std/cmp/trait.Eq.html
-[partial-eq]: https://doc.rust-lang.org/std/cmp/trait.PartialEq.html
-[ord]: https://doc.rust-lang.org/std/cmp/trait.Ord.html
-[partial-ord]: https://doc.rust-lang.org/std/cmp/trait.PartialOrd.html
-[clone]: https://doc.rust-lang.org/std/clone/trait.Clone.html
-[copy]: https://doc.rust-lang.org/core/marker/trait.Copy.html
-[hash]: https://doc.rust-lang.org/std/hash/trait.Hash.html
-[default]: https://doc.rust-lang.org/std/default/trait.Default.html
-[debug]: https://doc.rust-lang.org/std/fmt/trait.Debug.html
-[derive]: https://doc.rust-lang.org/reference/attributes.html#derive
-# 运算符重载
+## 运算符重载
 
 在 Rust 中，很多运算符可以通过 trait 来重载。也就是说，这些运算符可以根据它们的
 输入参数来完成不同的任务。这之所以可行，是因为运算符就是方法调用的语法糖。例
@@ -208,16 +216,9 @@ fn main() {
 }
 ```
 
-### 参见：
+## Drop
 
-[Add][add], [语法索引][syntax]
-
-[add]: http://doc.rust-lang.org/core/ops/trait.Add.html
-[ops]: http://doc.rust-lang.org/core/ops/
-[syntax]: https://doc.rust-lang.org/book/syntax-index.html
-# Drop
-
-[`Drop`][Drop] trait 只有一个方法：`drop`，当对象离开作用域时会自动调用该
+`Drop` trait 只有一个方法：`drop`，当对象离开作用域时会自动调用该
 方法。`Drop` trait 的主要作用是释放实现者的实例拥有的资源。
 
 `Box`，`Vec`，`String`，`File`，以及 `Process` 是一些实现了 `Drop` trait 来释放
@@ -268,18 +269,17 @@ fn main() {
 }
 ```
 
-[Drop]: https://doc.rust-lang.org/std/ops/trait.Drop.html
-# Iterators
+## Iterators
 
 `Iterator` trait 用来对集合（collection）类型（比如数组）实现迭代器。
 
 这个 trait 只需定义一个返回 `next`（下一个）元素的方法，这可手动在 `impl` 代码块
 中定义，或者自动定义（比如在数组或区间中）。
 
-为方便起见，`for` 结构会使用 [`.into_iterator()`][intoiter] 方法将一些集合类型
+为方便起见，`for` 结构会使用 `.into_iterator()` 方法将一些集合类型
 转换为迭代器。
 
-下面例子展示了如何使用 `Iterator` trait 的方法，更多可用的方法可以看[这里][iter]。
+下面例子展示了如何使用 `Iterator` trait 的方法。
 
 
 ```rust,editable
@@ -352,14 +352,12 @@ fn main() {
 }
 ```
 
-[intoiter]: https://doc.rust-lang.org/std/iter/trait.IntoIterator.html
-[iter]: http://doc.rust-lang.org/core/iter/trait.Iterator.html
-# Clone
+## Clone
 
 当处理资源时，默认的行为是在赋值或函数调用的同时将它们转移。但是我们有时候也需要
 把资源复制一份。
 
-[`Clone`][clone] trait 正好帮助我们完成这任务。通常，我们可以使用由 `Clone`
+`Clone` trait 正好帮助我们完成这任务。通常，我们可以使用由 `Clone`
 trait 定义的 `.clone()` 方法。
 
 ```rust,editable
@@ -407,4 +405,16 @@ fn main() {
 }
 ```
 
-[clone]: https://doc.rust-lang.org/std/clone/trait.Clone.html
+## 实验总结
+
+本节实验中我们学习了以下的内容：
+
+* trait 概念
+* 推导
+* 运算符重载
+* Drop
+* Iterators
+* Clone
+
+请务必按照实验步骤将示例代码在实验环境中完整输入一遍，并完成动手练习题目。只有真正动手去做才会有最大的收获，遇到问题欢迎在 [实验楼讨论区](https://www.shiyanlou.com/questions/) 中发帖与同学讨论交流。
+
