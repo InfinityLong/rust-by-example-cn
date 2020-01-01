@@ -1,41 +1,18 @@
 # 通过例子学 Rust
 
-[![Build Status][travis-image]][travis-link]
-> Chinese translation of the [Rust By Example][rust-by-example]
->
-> 本文档按照 [**Rust 文档翻译指引**](https://github.com/rust-lang-cn/rust-translation-guide)规范进行翻译。
-> 首次于 2016-08-07 翻译完全部内容，欢迎纠正——最后更新时间 2019.5.3
-> 近段时间将跟随英文版进行升级调整，欢迎大家踊跃参与，共同更新内容 —— 2019.4.20
+本课程为 [实验楼](https://www.shiyanlou.com/) 在线实验版本，可以通过以下链接进入到课程：
 
-通过例子学 Rust，Rust By Example 中文版（包含在线代码编辑器）。
+* [通过例子学 Rust](https://www.shiyanlou.com/courses/1499)
+
+实验楼版本的课程内容基于 [Rust By Example 中文版](https://github.com/rust-lang-cn/rust-by-example-cn) 进行制作和改编。改编后的实验内容放入目录 `1499-rust-by-example-shiyanlou`。
+
+原中文翻译版本内容见 `src` 目录，按照 [**Rust 文档翻译指引**](https://github.com/rust-lang-cn/rust-translation-guide) 规范进行翻译。首次于 2016-08-07 翻译完全部内容，最后更新时间 2019.5.3。如果希望参与翻译工作，可以关注项目 [rust-by-example-cn](https://github.com/rust-lang-cn/rust-by-example-cn)。英文原版仓库见 [rust-by-example](https://github.com/rust-lang/rust-by-example)。
 
 ## 使用说明
 
-如果想阅读《通过例子学 Rust》，可以直接访问 [https://rustwiki.org/zh-CN/rust-by-example/][website-cn] 进行在线上阅读。（英文阅读地址：[https://doc.rust-lang.org/rust-by-example/][website]）
+如果希望以在线实验的形式完成 Rust By Example 的学习，可以进入到实验楼的课程 [《通过例子学 Rust》](https://www.shiyanlou.com/courses/1499)。
 
-若想在本地阅读，请先[安装 Rust][install Rust]，然后进行下面操作：
-
-```bash
-$ git clone https://github.com/rust-lang-cn/rust-by-example-cn
-$ cd rust-by-example-cn
-$ cargo install mdbook
-$ mdbook build
-$ mdbook serve
-```
-
-为了能够运行这些示例，你必须要连接到网络；当然你可以离线阅读所有这些内容。
-
-
-## 如何贡献
-
-请查看 [CONTRIBUTING.md][how-to-contribute] 文件了解详细内容。
-
-
-## 其他语言版本
-
-* [English](https://github.com/rust-lang/rust-by-example)
-* [French](https://github.com/Songbird0/FR_RBE)
-* [Japanese](https://github.com/rust-lang-ja/rust-by-example-ja)
+如果想在线阅读《通过例子学 Rust》，可以直接访问 [https://rustwiki.org/zh-CN/rust-by-example/](https://rustwiki.org/zh-CN/rust-by-example/) 进行在线上阅读。（英文阅读地址：[https://doc.rust-lang.org/rust-by-example/](https://doc.rust-lang.org/rust-by-example/)）
 
 ## 授权协议
 
@@ -47,13 +24,3 @@ $ mdbook serve
 可以根据自己选择来定。
 
 除非您有另外说明，否则您在本仓库提交的任何贡献均按上述方式进行双重许可授权，就如 Apache 2.0 协议所规定那样，而无需附加任何其他条款或条件。
-
-
-
-[install Rust]: https://www.rust-lang.org/tools/install
-[rust-by-example]: https://github.com/rust-lang/rust-by-example
-[travis-image]: https://travis-ci.org/rust-lang-cn/rust-by-example-cn.svg?branch=master
-[travis-link]: https://travis-ci.org/rust-lang-cn/rust-by-example-cn
-[website]: https://doc.rust-lang.org/rust-by-example/
-[website-cn]: https://rustwiki.org/zh-CN/rust-by-example/
-[how-to-contribute]: CONTRIBUTING.md
