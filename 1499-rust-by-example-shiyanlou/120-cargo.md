@@ -39,16 +39,27 @@ cargo new foo
 cargo new --lib foo
 ```
 
+如果在执行 `cargo new foo` 时出现以下错误：
+
+![错误提示](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383069/wm)
+
+只需跟随提示设置 `USER` 即可，在实验楼 WebIDE 终端中执行以下命令：
+
+```bash
+export USER=shiyanlou
+```
+
+设置成功后，由于之前的错误造成 `foo` 文件夹已被创建，再次使用命令时会出现以下错误：
+
+![错误提示 2](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383071/wm)
+
+解决方法一是删除 `foo` 文件夹，从新使用 `cargo new foo` 创建项目；二是跟随提示使用 `cargo init foo` 在 `foo` 文件夹下初始化项目。
+
 对于本章的其余部分，我们选定创建的都是二进制可执行文件而不是库，但所有的概念都是相同的。
 
 完成上述命令后，将看到如下内容：
 
-```txt
-foo
-├── Cargo.toml
-└── src
-    └── main.rs
-```
+![项目结构](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383072/wm)
 
 `main.rs` 是新项目的入口源文件——这里没什么新东西。 `Cargo.toml` 是本项目（`foo`）的 `cargo` 的配置文件。 浏览 `Cargo.toml` 文件，将看到类似以下的的内容：
 
@@ -63,16 +74,15 @@ authors = ["mark"]
 
 `package` 下面的 `name` 字段表明项目的名称。 如果您发布 crate（后面将做更多介绍），那么 `crates.io` 将使用此字段标明的名称。 这也是编译时输出的二进制可执行文件的名称。
 
-`version` 字段是使用[语义版本控制](http://semver.org/)（Semantic
-Versioning）的 crate 版本号。
+- `version` 字段是使用[语义版本控制](http://semver.org/)（Semantic Versioning）的 crate 版本号。
 
-`authors` 字段表明发布 crate 时的作者列表。
+- `authors` 字段表明发布 crate 时的作者列表。
 
-`dependencies` 这部分可以让你为项目添加依赖。
+- `dependencies` 这部分可以让你为项目添加依赖。
 
 举个例子，假设我们希望程序有一个很棒的命令行界面（command-line interface，CLI））。 你可以在 [crates.io](https://crates.io)（官方的 Rust 包注册服务）上找到很多很棒的 Rust 包。其中一个受欢迎的包是 [clap](https://crates.io/crates/clap)（译注：一个命令行参数的解析器）。在撰写本文时，[clap] 最新发布的版本为 `2.27.1`。要在程序中添加依赖，我们可以很简单地在 `Cargo.toml` 文件中的 `dependencies` 项后面将以下内容添加进来 ：`clap = "2.27.1"`。当然，在 `main.rs` 文件中写上 `extern crate clap`，就和平常一样。 就是这样！你就可以在程序中开始使用 `clap` 了。
 
-`cargo` 还支持[其他类型的依赖][dependencies]。 下面是一个简单的示例：
+`cargo` 还支持 [其他类型的依赖][dependencies]。下面是一个简单的示例：
 
 ```toml
 [package]
@@ -119,13 +129,13 @@ foo
 
 为了使得 `cargo` 编译或运行这个二进制可执行文件而不是默认或其他二进制可执行文件，我们只需给 `cargo` 增加一个参数 `--bin my_other_bin`，其中 `my_other_bin` 是我们想要使用的二进制可执行文件的名称。
 
-除了可添加其他二进制可执行文件外，`cargo` 还支持[更多功能][more features]，如基准测试，测试和示例。
+除了可添加其他二进制可执行文件外，`cargo` 还支持更多功能（more features），如基准测试，测试和示例。
 
 在下一节中，我们将更仔细地学习测试的内容。
 
 ## 测试
 
-我们知道测试是任何软件不可缺少的一部分！Rust 对单元和集成测试提供一流的支持（参见《Rust 程序设计语言》中的关于[测试的章节](https://doc.rust-lang.org/book/ch11-00-testing.html)）。
+我们知道测试是任何软件不可缺少的一部分！Rust 对单元和集成测试提供一流的支持（参见《Rust 程序设计语言》中的关于 [测试的章节](https://doc.rust-lang.org/book/ch11-00-testing.html)）。
 
 通过上面链接的关于测试章节，我们看到了如何编写单元测试和集成测试。在代码目录组织上，我们可以将单元测试放在需要测试的模块中，并将集成测试放在源码中 `tests/` 目录中：
 
@@ -203,7 +213,7 @@ build = "build.rs"
 
 构建脚本只是另一个 Rust 文件，此文件将在编译包中的任何其他内容之前，优先进行编译和调用。 因此，此文件可实现满足 crate 的先决条件。
 
-cargo 通过[此处指定](https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-build-scripts)的可以使用的环境变量为脚本提供输入。（英文原文：Cargo provides the script with inputs via environment variables [specified
+cargo 通过 [此处指定](https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-build-scripts) 的可以使用的环境变量为脚本提供输入。（英文原文：Cargo provides the script with inputs via environment variables [specified
 here](https://doc.rust-lang.org/cargo/reference/environment-variables.html#environment-variables-cargo-sets-for-build-scripts) that can be used.）
 
 此脚本通过 stdout （标准输出）提供输出。打印的所有行都写入到 `target/debug/build/<pkg>/output`。另外，以 `cargo:` 为前缀的行将由 cargo 直接解析，因此可用于定义包编译的参数。

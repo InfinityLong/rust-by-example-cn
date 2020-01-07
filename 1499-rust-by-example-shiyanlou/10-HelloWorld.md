@@ -8,7 +8,7 @@ enable_checker: true
 
 ## 课程介绍
 
-[Rust][http://www.rust-lang.org/] 是一门注重安全（safety）、速度（speed）和并发（concurrency）的现代系统编程语言。Rust 通过内存安全来实现以上目标，但不用垃圾回收机制（garbage collection, GC)。
+[Rust](http://www.rust-lang.org/) 是一门注重安全（safety）、速度（speed）和并发（concurrency）的现代系统编程语言。Rust 通过内存安全来实现以上目标，但不用垃圾回收机制（garbage collection, GC)。
 
 《通过例子学 Rust》（Rust By Example, RBE）内容由一系列可运行的实例组成，通过这些例子阐明了各种 Rust 的概念和基本库。想获取这些例子外的更多内容，可以 [安装 Rust 到本地](https://www.rust-lang.org/tools/install) 并查阅 [官方标准库文档](http://doc.rust-lang.org/std/)。
 
@@ -16,11 +16,11 @@ enable_checker: true
 
 实验内容基于 [Rust By Example 中文版](https://github.com/rust-lang-cn/rust-by-example-cn) 进行制作和改编。感谢英文原版以及中文版本所有贡献者，让我们能够通过该教程快速入门 Rust 编程语言。
 
-原中文翻译版本内容见 `src` 目录，按照 [**Rust 文档翻译指引**](https://github.com/rust-lang-cn/rust-translation-guide) 规范进行翻译。首次于 2016-08-07 翻译完全部内容，最后更新时间 2019.5.3。如果希望参与翻译工作，可以关注项目 [rust-by-example-cn](https://github.com/rust-lang-cn/rust-by-example-cn)。英文原版仓库见 [rust-by-example](https://github.com/rust-lang/rust-by-example)。
+原中文翻译版本内容见 `src` 目录，按照 [**Rust 文档翻译指引**](https://github.com/rust-lang-cn/rust-translation-guide) 规范进行翻译。首次于 2016-08-07 翻译完全部内容，最后更新时间 2019-05-03。如果希望参与翻译工作，可以关注项目 [rust-by-example-cn](https://github.com/rust-lang-cn/rust-by-example-cn)。英文原版仓库见 [rust-by-example](https://github.com/rust-lang/rust-by-example)。
 
 #### 授权协议
 
-《通过例子学 Rust》（中文版与英文版 Rust By Example 均） 使用以下两种协议的任一种进行授权：
+《通过例子学 Rust》（中文版与英文版 Rust By Example 均）使用以下两种协议的任一种进行授权：
 
 * Apache 2.0 授权协议，（[LICENSE-APACHE](LICENSE-APACHE) 或 http://www.apache.org/licenses/LICENSE-2.0）
 * MIT 授权协议 ([LICENSE-MIT](LICENSE-MIT) 或 http://opensource.org/licenses/MIT)
@@ -43,7 +43,7 @@ enable_checker: true
 
 课程实验根据原版教程内容进行规划，每个实验对应原版教程中的一个或多个章节：
 
-- Hello World - 从经典的 “Hello World” 程序开始学习。
+- Hello World - 从经典的 "Hello World" 程序开始学习。
 - 原生类型 - 学习有符号整型，无符号整型和其他原生类型。
 - 自定义类型 - 结构体 `struct` 和 枚举 `enum`。
 - 变量绑定 - 变量绑定，作用域，变量遮蔽。
@@ -72,7 +72,7 @@ enable_checker: true
 
 我们的第一个程序将打印传说中的 "Hello World" 消息，下面是完整的程序代码和编译运行过程。
 
-这是传统的 Hello World 程序的源码。首先，打开实验桌面上的 gedit，输入以下代码（`//` 开头的注释的内容可以不必输入）：
+这是传统的 Hello World 程序的源码。首先，在实验楼 WebIDE 中 `/home/project` 目录下新建 `hello.rs` 文件，编写以下代码（以 `//` 开头的注释内容可以不必输入）：
 
 ```rust,editable
 // 这是注释内容，将会被编译器忽略掉
@@ -91,28 +91,42 @@ fn main() {
 }
 ```
 
-
-代码输入完成后，可以保存代码文件到 `/home/shiyanlou/hello.rs` 路径。
-
 `println!` 是一个 **宏**（macros），可以将文本输出到控制台（console）。
 
-打开 Xfce 终端，在终端中输入以下命令进行编译和运行。
-
-使用 Rust 的编译器 `rustc` 可以从源程序生成可执行文件：
+在实验楼 WebIDE 终端中执行以下命令，使用 Rust 的编译器 `rustc` 从源程序生成可执行文件：
 
 ```bash
-$ cd /home/shiyanlou
+$ cd /home/project
 $ rustc hello.rs
 ```
 
-使用 `rustc` 编译后将得到可执行文件 `hello`：
+使用 `rustc` 编译后将得到可执行文件 `hello`，使用以下命令来运行生成的文件 `hello`：
 
 ```bash
 $ ./hello
-Hello World!
 ```
 
+执行后的结果如下所示：
+
+![hello 执行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383086/wm)
+
 #### 动手试一试
+
+```checker
+- name: check if file exist
+  script: |
+    #!/bin/bash
+    ls /home/project/hello.rs
+  error: 未创建 hello.rs 文件！
+  timeout: 2
+
+- name: check file content
+  script: |
+    #!/bin/bash
+    grep "I'm a Rustacean!" /home/shiyanlou/hello.rs
+  error: 请尝试完成「动手试一试」内容！
+  timeout: 2
+```
 
 请尝试下在你的 `hello.rs` 程序中增加一行代码，再一次使用宏 `println!`，得到下面结果：
 
@@ -163,14 +177,21 @@ fn main() {
 
 打印操作由 `std::fmt` 里面所定义的一系列 `宏` 来处理，包括：
 
-* `format!`：将格式化文本写到`字符串`（String）。（译注：`字符串`是返
-回值不是参数。）
-* `print!`：与 `format!` 类似，但将文本输出到控制台（io::stdout）。
+* `format!`：将格式化文本写到 `字符串`（String）。
+
+  > 译注：`字符串` 是返回值不是参数。
+
+* `print!`：与 `format!` 类似，但将文本输出到控制台（`io::stdout`）。
+
 * `println!`: 与 `print!` 类似，但输出结果追加一个换行符。
-* `eprint!`：与 `format!` 类似，但将文本输出到标准错误（io::stderr）。
+
+* `eprint!`：与 `format!` 类似，但将文本输出到标准错误（`io::stderr`）。
+
 * `eprintln!`：与 `eprint!` 类似，但输出结果追加一个换行符。
 
 这些宏都以相同的做法解析（parse）文本。另外有个优点是格式化的正确性会在编译时检查。
+
+新建 `format.rs` 文件，编写代码如下。
 
 ```rust,editable,ignore,mdbook-runnable
 fn main() {
@@ -216,27 +237,35 @@ fn main() {
 }
 ```
 
-`std::fmt` 包含多种 `traits`（trait 有 “特征，特性” 等意思）
-来控制文字显示，其中重要的两种 trait 的基本形式如下：
+`std::fmt` 包含多种 `traits`（trait 有「特征，特性」等意思）来控制文字显示，其中重要的两种 trait 的基本形式如下：
 
 * `fmt::Debug`：使用 `{:?}` 标记。格式化文本以供调试使用。
 * `fmt::Display`：使用 `{}` 标记。以更优雅和友好的风格来格式化文本。
 
-上例使用了 `fmt::Display`，因为标准库提供了那些类型的实现。若要打印自定义类型的
-文本，需要更多的步骤。
+上例使用了 `fmt::Display`，因为标准库提供了那些类型的实现。若要打印自定义类型的文本，需要更多的步骤。
 
 #### 动手试一试
 
-* 改正上面代码中的两个错误（见 “改正”），使它可以没有错误地运行。
+```checker
+- name: check if file exist
+  script: |
+    #!/bin/bash
+    ls /home/project/format.rs
+  error: 未创建 format.rs 文件！
+  timeout: 2
+```
+
+* 改正上面代码中的两个错误（见代码注释中的「改正」），使它可以没有错误地运行。
+
 * 再用一个 `println!` 宏，通过控制显示的小数位数来打印：`Pi is roughly 3.142`
  （Pi 约等于 3.142）。为了达到练习目的，使用 `let pi = 3.141592` 作为 Pi 的近似
- 值（提示：设置小数位的显示格式可以参考文档 `std::fmt`。
+ 值。
+ 
+ > 提示：设置小数位的显示格式可以参考文档 [std::fmt](https://doc.rust-lang.org/std/fmt)。
 
 ### 调试（Debug）
 
-所有的类型，若想用 `std::fmt` 的格式化 `trait` 打印出来，都要求实现这个
- `trait`。自动的实现只为一些类型提供，比如 `std` 库中的类型。所有其他类型
-都**必须**手动实现。
+所有的类型，若想用 `std::fmt` 的格式化 `trait` 打印出来，都要求实现这个 `trait`。自动的实现只为一些类型提供，比如 `std` 库中的类型。所有其他类型都**必须**手动实现。
 
 `fmt::Debug` 这个 `trait` 使这项工作变得相当简单。所有类型都能推导（`derive`，即自
 动创建）`fmt::Debug` 的实现。但是 `fmt::Display` 需要手动实现。
@@ -250,7 +279,7 @@ struct UnPrintable(i32);
 struct DebugPrintable(i32);
 ```
 
-所有 `std` 库类型都天生可以使用 `{:?}` 来打印：
+所有 `std` 库类型都天生可以使用 `{:?}` 来打印。新建 `format1.rs` 文件，编写代码如下：
 
 ```rust,editable
 // 推导 `Structure` 的 `fmt::Debug` 实现。
@@ -279,8 +308,18 @@ fn main() {
 }
 ```
 
-所以 `fmt::Debug` 确实使这些内容可以打印，但是牺牲了一些美感。Rust 也通过
- `{:#?}` 提供了 “美化打印” 的功能：
+在实验楼 WebIDE 终端中编译并运行程序。
+
+```bash
+$ rustc format1.rs
+$ ./format1
+```
+
+执行结果如下所示：
+
+![format1 执行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383088/wm)
+
+所以 `fmt::Debug` 确实使这些内容可以打印，但是牺牲了一些美感。Rust 也通过 `{:#?}` 提供了「美化打印」的功能：
 
 ```rust,editable
 #[derive(Debug)]
@@ -299,13 +338,15 @@ fn main() {
 }
 ```
 
+将上面代码添加到 `format1.rs` 中后，编译并运行的结果如下所示：
+
+![format1 执行结果 2](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383089/wm)
+
 你可以通过手动实现 `fmt::Display` 来控制显示效果。
 
 ### 显示（Display）
 
-`fmt::Debug` 通常看起来不太简洁，因此自定义输出的外观经常是更可取的。这需要通过
-手动实现 `fmt::Display` 来做到。`fmt::Display` 采用 `{}` 标记。实现方式看
-起来像这样：
+`fmt::Debug` 通常看起来不太简洁，因此自定义输出的外观经常是更可取的。这需要通过手动实现 `fmt::Display` 来做到。`fmt::Display` 采用 `{}` 标记。实现方式看起来像这样：
 
 ```rust
 // （使用 `use`）导入 `fmt` 模块使 `fmt::Display` 可用
@@ -326,22 +367,17 @@ impl fmt::Display for Structure {
 }
 ```
 
-`fmt::Display` 的效果可能比 `fmt::Debug` 简洁，但对于 `std` 库来说，这就有一个问
-题。模棱两可的类型该如何显示呢？举个例子，假设标准库对所有的 `Vec<T>` 都实现了同
-一种输出样式，那么它应该是哪种样式？下面两种中的一种吗？
+`fmt::Display` 的效果可能比 `fmt::Debug` 简洁，但对于 `std` 库来说，这就有一个问题。模棱两可的类型该如何显示呢？举个例子，假设标准库对所有的 `Vec<T>` 都实现了同一种输出样式，那么它应该是哪种样式？下面两种中的一种吗？
 
 * `Vec<path>`：`/:/etc:/home/username:/bin`（使用 `:` 分割）
 * `Vec<number>`：`1,2,3`（使用 `,` 分割）
 
-我们没有这样做，因为没有一种合适的样式适用于所有类型，标准库也并不擅自规定一种样
-式。对于 `Vec<T>` 或其他任意泛型容器（generic container），`fmt::Display` 都没有
-实现。因此在这些泛型的情况下要用 `fmt::Debug`。
+我们没有这样做，因为没有一种合适的样式适用于所有类型，标准库也并不擅自规定一种样式。对于 `Vec<T>` 或其他任意*泛型容器*（generic container），`fmt::Display` 都没有实现。因此在这些泛型的情况下要用 `fmt::Debug`。
 
-这并不是一个问题，因为对于任何**非**泛型的**容器**类型， `fmt::Display` 都能够实
-现。
+这并不是一个问题，因为对于任何**非**泛型的**容器**类型， `fmt::Display` 都能够实现。新建 `display.rs` 文件，编写代码如下：
 
 ```rust,editable
-use std::fmt; // 导入 `fmt`
+use std::fmt; // （使用 `use`）导入 `fmt` 模块使 `fmt::Display` 可用
 
 // 带有两个数字的结构体。推导出 `Debug`，以便与 `Display` 的输出进行比较。
 #[derive(Debug)]
@@ -396,14 +432,26 @@ fn main() {
 }
 ```
 
+程序运行的结果如下所示：
+
+![display 执行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383091/wm)
+
 `fmt::Display` 被实现了，而 `fmt::Binary` 没有，因此 `fmt::Binary` 不能使用。
 `std::fmt` 有很多这样的 `trait`，它们都要求有各自的实现。这些内容将在
 后面的 `std::fmt` 章节中详细介绍。
 
 #### 动手试一试
 
-检验上面例子的输出，然后在示例程序中，仿照 `Point2D` 结构体增加一个复数结构体。
-使用一样的方式打印，输出结果要求是这个样子：
+```checker
+- name: check if file exist
+  script: |
+    #!/bin/bash
+    ls /home/project/display.rs
+  error: 未创建 display.rs 文件！
+  timeout: 2
+```
+
+检验上面例子的输出，然后在示例程序中，仿照 `Point2D` 结构体增加一个复数结构体。使用一样的方式打印，输出结果要求是这个样子：
 
 ```txt
 Display: 3.3 + 7.2i
@@ -412,9 +460,7 @@ Debug: Complex { real: 3.3, imag: 7.2 }
 
 ### 测试实例：List
 
-对一个结构体实现 `fmt::Display`，其中的元素需要一个接一个地处理到，这可能会很麻
-烦。问题在于每个 `write!` 都要生成一个 `fmt::Result`。正确的实现需要
-处理**所有**的 Result。Rust 专门为解决这个问题提供了 `?` 操作符。
+对一个结构体实现 `fmt::Display`，其中的元素需要一个接一个地处理到，这可能会很麻烦。问题在于每个 `write!` 都要生成一个 `fmt::Result`。正确的实现需要处理**所有**的 Result。Rust 专门为解决这个问题提供了 `?` 操作符。
 
 在 `write!` 上使用 `?` 会像是这样：
 
@@ -431,7 +477,7 @@ write!(f, "{}", value)?;
 try!(write!(f, "{}", value));
 ```
 
-有了 `?`，对一个 `Vec` 实现 `fmt::Display` 就很简单了：
+有了 `?`，对一个 `Vec` 实现 `fmt::Display` 就很简单了。新建 `vector.rs` 文件，编写代码如下：
 
 ```rust,editable
 use std::fmt; // 导入 `fmt` 模块。
@@ -465,7 +511,21 @@ fn main() {
 }
 ```
 
+程序运行的结果如下：
+
+![vector 执行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383093/wm)
+
 #### 动手试一试：
+
+```checker
+- name: check if file exist
+  script: |
+    #!/bin/bash
+    ls /home/project/vector.rs
+  error: 未创建 vector.rs 文件！
+  timeout: 2
+```
+
 更改程序使 vector 里面每个元素的下标也能够打印出来。新的结果如下：
 
 ```rust,ignore
@@ -481,11 +541,11 @@ fn main() {
   `"0xDEADBEEF"`
 * `format!("0o{:o}", foo)` -> `"0o33653337357"`
 
-根据使用的**参数类型**是 `X`、`o` 还是**未指定**，同样的变量（`foo`）能够格式化
-成不同的形式。
+根据使用的**参数类型**是 `X`、`o` 还是**未指定**，同样的变量（`foo`）能够格式化成不同的形式。
 
-这个格式化的功能是通过 trait 实现的，每种参数类型都对应一种 trait。最常见的格式
-化 trait 就是 `Display`，它可以处理参数类型为未指定的情况，比如 `{}`。
+这个格式化的功能是通过 trait 实现的，每种参数类型都对应一种 trait。最常见的格式化 trait 就是 `Display`，它可以处理参数类型为未指定的情况，比如 `{}`。
+
+新建 `format2.rs` 文件，编写代码如下：
 
 ```rust,editable
 use std::fmt::{self, Formatter, Display};
@@ -537,9 +597,22 @@ fn main() {
 }
 ```
 
+程序运行的结果如下：
+
+![format2 执行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383094/wm)
+
 在 `fmt::fmt` 文档中可以查看格式化 traits 一览表和它们的参数类型。
 
 #### 动手试一试
+
+```checker
+- name: check if file exist
+  script: |
+    #!/bin/bash
+    ls /home/project/fromat2.rs
+  error: 未创建 fromat2.rs 文件！
+  timeout: 2
+```
 
 为上面的 `Color` 结构体实现 `fmt::Display`，应得到如下的输出结果：
 
