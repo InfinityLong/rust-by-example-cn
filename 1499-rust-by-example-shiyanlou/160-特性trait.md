@@ -23,12 +23,9 @@ enable_checker: true
 
 ## trait 概念
 
-`trait` 是对未知类型 `Self` 定义的方法集。该类型也可以访问同一个 trait 中定义的
-其他方法。
+`trait` 是对未知类型 `Self` 定义的方法集。该类型也可以访问同一个 trait 中定义的其他方法。
 
-对任何数据类型都可以实现 trait。在下面例子中，我们定义了包含一系列方法
-的 `Animal`。然后针对 `Sheep` 数据类型实现 `Animal` `trait`，因而 `Sheep`
- 的实例可以使用 `Animal` 中的所有方法。
+对任何数据类型都可以实现 trait。在下面例子中，我们定义了包含一系列方法的 `Animal`。然后针对 `Sheep` 数据类型实现 `Animal trait`，因而 `Sheep` 的实例可以使用 `Animal` 中的所有方法。
 
 ```rust,editable
 struct Sheep { naked: bool, name: &'static str }
@@ -101,10 +98,17 @@ fn main() {
 }
 ```
 
+程序运行的结果如下：
+
+![程序运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383114/wm)
+
+移除类型标注 `let mut dolly: Sheep = Animal::new("Dolly");` 后程序运行结果：
+
+![错误运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383115/wm)
+
 ## 推导
 
-通过 `#[derive]` 属性，编译器能够提供某些 trait 的基本实现。如果
-需要更复杂的行为，这些 trait 也可以手动实现。
+通过 `#[derive]` 属性，编译器能够提供某些 trait 的基本实现。如果需要更复杂的行为，这些 trait 也可以手动实现。
 
 下面以下是可以自动推导的 trait：
 
@@ -163,14 +167,23 @@ fn main() {
 }
 ```
 
+程序运行结果如下：
+
+![程序运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383117/wm)
+
+取消 `println!("One second looks like: {:?}", _one_second);` 注释程序运行结果如下：
+
+![错误运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383119/wm)
+
+取消 `let _this_is_true = (_one_second == _one_second);` 注释程序运行结果如下：
+
+![错误运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383121/wm)
+
 ## 运算符重载
 
-在 Rust 中，很多运算符可以通过 trait 来重载。也就是说，这些运算符可以根据它们的
-输入参数来完成不同的任务。这之所以可行，是因为运算符就是方法调用的语法糖。例
-如，`a + b` 中的 `+` 运算符会调用 `add` 方法（也就是 `a.add(b)`）。这个 `add` 方
-法是 `Add` trait 的一部分。因此，`+` 运算符可以被任何 `Add` trait 的实现者使用。
+在 Rust 中，很多运算符可以通过 trait 来重载。也就是说，这些运算符可以根据它们的输入参数来完成不同的任务。这之所以可行，是因为运算符就是方法调用的语法糖。例如，`a + b` 中的 `+` 运算符会调用 `add` 方法（也就是 `a.add(b)`）。这个 `add` 方法是 `Add` trait 的一部分。因此，`+` 运算符可以被任何 `Add` trait 的实现者使用。
 
-会重载运算符的 `trait`（比如 `Add` 这种）可以在[这里][ops]查看。
+会重载运算符的 `trait`（比如 `Add` 这种）可以在[这里][https://doc.rust-lang.org/core/ops/]查看。
 
 ```rust,editable
 use std::ops;
@@ -216,16 +229,17 @@ fn main() {
 }
 ```
 
+程序运行结果如下：
+
+![运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383122/wm)
+
 ## Drop
 
-`Drop` trait 只有一个方法：`drop`，当对象离开作用域时会自动调用该
-方法。`Drop` trait 的主要作用是释放实现者的实例拥有的资源。
+`Drop` trait 只有一个方法：`drop`，当对象离开作用域时会自动调用该方法。`Drop` trait 的主要作用是释放实现者的实例拥有的资源。
 
-`Box`，`Vec`，`String`，`File`，以及 `Process` 是一些实现了 `Drop` trait 来释放
-资源的类型。`Drop` trait 也可以为任何自定义数据类型手动实现。
+`Box`，`Vec`，`String`，`File`，以及 `Process` 是一些实现了 `Drop` trait 来释放资源的类型。`Drop` trait 也可以为任何自定义数据类型手动实现。
 
-下面示例给 `drop` 函数增加了打印到控制台的功能，用于宣布它在什么时候被调用。
-when it is called.）
+下面示例给 `drop` 函数增加了打印到控制台的功能，用于宣布它在什么时候被调用（when it is called）。
 
 ```rust,editable
 struct Droppable {
@@ -268,6 +282,14 @@ fn main() {
     // `_a` *不会*在这里再次销毁，因为它已经被（手动）销毁。
 }
 ```
+
+程序运行结果如下：
+
+![程序运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383124/wm)
+
+注释 `drop(_a);` 后程序运行结果如下；
+
+![程序运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383126/wm)
 
 ## Iterators
 
@@ -352,13 +374,15 @@ fn main() {
 }
 ```
 
+程序运行结果如下：
+
+![程序运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383127/wm)
+
 ## Clone
 
-当处理资源时，默认的行为是在赋值或函数调用的同时将它们转移。但是我们有时候也需要
-把资源复制一份。
+当处理资源时，默认的行为是在赋值或函数调用的同时将它们转移。但是我们有时候也需要把资源复制一份。
 
-`Clone` trait 正好帮助我们完成这任务。通常，我们可以使用由 `Clone`
-trait 定义的 `.clone()` 方法。
+`Clone` trait 正好帮助我们完成这任务。通常，我们可以使用由 `Clone` trait 定义的 `.clone()` 方法。
 
 ```rust,editable
 // 不含资源的单元结构体
@@ -404,6 +428,18 @@ fn main() {
     println!("clone: {:?}", cloned_pair);
 }
 ```
+
+程序运行结果如下：
+
+![运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383129/wm)
+
+取消 `println!("original: {:?}", pair);` 注释注释后程序运行结果如下：
+
+![程序运行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383136/wm)
+
+取消 `println!("copy: {:?}", moved_pair);` 注释注释后程序运行结果如下：
+
+![错误执行结果](https://doc.shiyanlou.com/courses/uid1172186-20200107-1578383137/wm)
 
 ## 实验总结
 
