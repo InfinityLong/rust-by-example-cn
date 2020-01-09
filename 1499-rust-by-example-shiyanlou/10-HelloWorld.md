@@ -74,7 +74,7 @@ enable_checker: true
 
 这是传统的 Hello World 程序的源码。首先，在实验楼 WebIDE 中 `/home/project` 目录下新建 `hello.rs` 文件，编写以下代码（以 `//` 开头的注释内容可以不必输入）：
 
-```rust,editable
+```rust
 // 这是注释内容，将会被编译器忽略掉
 // 可以单击那边的按钮 "Run" 来测试这段代码 ->
 // 若想用键盘操作，可以使用快捷键 "Ctrl + Enter" 来运行
@@ -149,7 +149,7 @@ I'm a Rustacean!
 * `/// 为接下来的项生成帮助文档。`
 * `//! 为注释所属于的项（译注：如 crate、模块或函数）生成帮助文档。`
 
-```rust,editable
+```rust
 fn main() {
     // 这是行注释的例子
     // 注意有两个斜线在本行的开头
@@ -196,7 +196,7 @@ fn main() {
 
 新建 `format.rs` 文件，编写代码如下。
 
-```rust,editable,ignore,mdbook-runnable
+```rust
 fn main() {
     // 通常情况下，`{}` 会被任意变量内容所替换。
     // 变量内容会转化成字符串。
@@ -284,7 +284,7 @@ struct DebugPrintable(i32);
 
 所有 `std` 库类型都天生可以使用 `{:?}` 来打印。新建 `format1.rs` 文件，编写代码如下：
 
-```rust,editable
+```rust
 // 推导 `Structure` 的 `fmt::Debug` 实现。
 // `Structure` 是一个包含单个 `i32` 的结构体。
 #[derive(Debug)]
@@ -324,7 +324,7 @@ $ ./format1
 
 所以 `fmt::Debug` 确实使这些内容可以打印，但是牺牲了一些美感。Rust 也通过 `{:#?}` 提供了「美化打印」的功能：
 
-```rust,editable
+```rust
 #[derive(Debug)]
 struct Person<'a> {
     name: &'a str,
@@ -379,7 +379,7 @@ impl fmt::Display for Structure {
 
 这并不是一个问题，因为对于任何**非**泛型的**容器**类型， `fmt::Display` 都能够实现。新建 `display.rs` 文件，编写代码如下：
 
-```rust,editable
+```rust
 use std::fmt; // （使用 `use`）导入 `fmt` 模块使 `fmt::Display` 可用
 
 // 带有两个数字的结构体。推导出 `Debug`，以便与 `Display` 的输出进行比较。
@@ -467,7 +467,7 @@ Debug: Complex { real: 3.3, imag: 7.2 }
 
 在 `write!` 上使用 `?` 会像是这样：
 
-```rust,ignore
+```rust
 // 对 `write!` 进行尝试（try），观察是否出错。若发生错误，返回相应的错误。
 // 否则（没有出错）继续执行后面的语句。
 write!(f, "{}", value)?;
@@ -476,13 +476,13 @@ write!(f, "{}", value)?;
 另外，你也可以使用 `try!` 宏，它和 `?` 是一样的。这种写法比较罗嗦，故不再推荐，
 但在老一些的 Rust 代码中仍会看到。使用 `try!` 看起来像这样：
 
-```rust,ignore
+```rust
 try!(write!(f, "{}", value));
 ```
 
 有了 `?`，对一个 `Vec` 实现 `fmt::Display` 就很简单了。新建 `vector.rs` 文件，编写代码如下：
 
-```rust,editable
+```rust
 use std::fmt; // 导入 `fmt` 模块。
 
 // 定义一个包含单个 `Vec` 的结构体 `List`。
@@ -531,7 +531,7 @@ fn main() {
 
 更改程序使 vector 里面每个元素的下标也能够打印出来。新的结果如下：
 
-```rust,ignore
+```rust
 [0: 1, 1: 2, 2: 3]
 ```
 
@@ -550,7 +550,7 @@ fn main() {
 
 新建 `format2.rs` 文件，编写代码如下：
 
-```rust,editable
+```rust
 use std::fmt::{self, Formatter, Display};
 
 struct City {

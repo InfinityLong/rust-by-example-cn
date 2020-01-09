@@ -26,7 +26,7 @@ Rust 提供了一个强大的宏系统，可进行元编程（metaprogramming）
 
 宏是通过 `macro_rules!` 宏来创建的。
 
-```rust,editable
+```rust
 // 这是一个简单的宏，名为 `say_hello`。
 macro_rules! say_hello {
     // `()` 表示此宏不接受任何参数。
@@ -127,7 +127,7 @@ fn main() {
 
 宏可以重载，从而接受不同的参数组合。在这方面，`macro_rules!` 的作用类似于匹配（match）代码块：
 
-```rust,editable
+```rust
 // 根据你调用它的方式，`test!` 将以不同的方式来比较 `$left` 和 `$right`。
 macro_rules! test {
     // 参数不需要使用逗号隔开。
@@ -163,7 +163,7 @@ fn main() {
 
 在下面例子中，把模式这样： `$(...),+` 包围起来，就可以匹配一个或多个用逗号隔开的表达式。另外注意到，宏定义的最后一个分支可以不用分号作为结束。
 
-```rust,editable
+```rust
 // `min!` 将求出任意数量的参数的最小值。
 macro_rules! find_min {
     // 基本情形：
@@ -190,7 +190,7 @@ fn main() {
 
 通过提取函数或测试集的公共部分，宏可以让你写出 DRY 的代码（DRY 是 Don't Repeat Yourself 的缩写，意思为 “不要写重复代码”）。这里给出一个例子，对 `Vec<T>` 实现并测试了关于 `+=`、`*=` 和 `-=` 等运算符。
 
-```rust,editable
+```rust
 use std::ops::{Add, Mul, Sub};
 
 macro_rules! assert_equal_len {
@@ -265,7 +265,7 @@ DSL 是 Rust 的宏中集成的微型 “语言”。这种语言是完全合法
 
 比如说我想要定义一套小的计算器 API，可以传给它表达式，它会把结果打印到控制台上。
 
-```rust,editable
+```rust
 macro_rules! calculate {
     (eval $e:expr) => {{
         {
@@ -298,7 +298,7 @@ fn main() {
 
 我们可以把之前的 `calculater!` 宏改写成可变参数接口：
 
-```rust,editable
+```rust
 macro_rules! calculate {
     // 单个 `eval` 的模式
     (eval $e:expr) => {{
