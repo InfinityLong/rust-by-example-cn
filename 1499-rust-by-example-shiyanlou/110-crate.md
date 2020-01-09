@@ -14,9 +14,9 @@ crate（中文有 “包，包装箱” 之意）是 Rust 的编译单元。当�
 
 本节实验的主要内容包括以下知识点：
 
-* `crate` 概念
-* 创建方式
-* `extern crate`
+- `crate` 概念
+- 创建方式
+- `extern crate`
 
 ## `crate` 概念
 
@@ -58,7 +58,6 @@ $ rustc --crate-type=lib rary.rs
 
 默认情况下，库会使用 crate 文件的名字，前面加上 “lib” 前缀，但这个默认名称可以使用 `crate_name` 属性覆盖。
 
-
 ## `extern crate`
 
 要把上一节创建的库链接到一个 crate，必须使用 `extern crate` 声明。这不仅会链接库，还会用一个与库名相同的模块来存放库里面的所有项。于模块的可见性规则也适用于库。
@@ -92,9 +91,8 @@ $ rustc executable.rs --extern rary=./library.rlib && ./executable
 
 本节实验中我们学习了以下的内容：
 
-* `crate` 概念
-* 创建方式
-* `extern crate`
+- `crate` 概念
+- 创建方式
+- `extern crate`
 
 请务必按照实验步骤将示例代码在实验环境中完整输入一遍，并完成动手练习题目。只有真正动手去做才会有最大的收获，遇到问题欢迎在 [实验楼讨论区](https://www.shiyanlou.com/questions/) 中发帖与同学讨论交流。
-
