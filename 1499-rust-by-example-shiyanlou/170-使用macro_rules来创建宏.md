@@ -14,11 +14,11 @@ Rust 提供了一个强大的宏系统，可进行元编程（metaprogramming）
 
 本节实验的主要内容包括以下知识点：
 
-* Rust 的宏
-* 创建宏的语法：模式与指示符，重载，重复
-* DRY (不写重复代码)
-* DSL (领域专用语言)
-* 可变参数接口
+- Rust 的宏
+- 创建宏的语法：模式与指示符，重载，重复
+- DRY (不写重复代码)
+- DSL (领域专用语言)
+- 可变参数接口
 
 ## 宏简介
 
@@ -26,7 +26,7 @@ Rust 提供了一个强大的宏系统，可进行元编程（metaprogramming）
 
 宏是通过 `macro_rules!` 宏来创建的。
 
-```rust,editable
+```rust
 // 这是一个简单的宏，名为 `say_hello`。
 macro_rules! say_hello {
     // `()` 表示此宏不接受任何参数。
@@ -113,21 +113,21 @@ fn main() {
 
 这里列出全部指示符：
 
-* `block`
-* `expr` 用于表达式
-* `ident` 用于变量名或函数名
-* `item`
-* `pat` (**模式** *pattern*)
-* `path`
-* `stmt` (**语句** *statement*)
-* `tt` (**标记树** *token tree*)
-* `ty` (**类型** *type*)
+- `block`
+- `expr` 用于表达式
+- `ident` 用于变量名或函数名
+- `item`
+- `pat` (**模式** _pattern_)
+- `path`
+- `stmt` (**语句** _statement_)
+- `tt` (**标记树** _token tree_)
+- `ty` (**类型** _type_)
 
 ### 重载
 
 宏可以重载，从而接受不同的参数组合。在这方面，`macro_rules!` 的作用类似于匹配（match）代码块：
 
-```rust,editable
+```rust
 // 根据你调用它的方式，`test!` 将以不同的方式来比较 `$left` 和 `$right`。
 macro_rules! test {
     // 参数不需要使用逗号隔开。
@@ -163,14 +163,14 @@ fn main() {
 
 在下面例子中，把模式这样： `$(...),+` 包围起来，就可以匹配一个或多个用逗号隔开的表达式。另外注意到，宏定义的最后一个分支可以不用分号作为结束。
 
-```rust,editable
+```rust
 // `min!` 将求出任意数量的参数的最小值。
 macro_rules! find_min {
     // 基本情形：
     ($x:expr) => ($x);
     // `$x` 后面跟着至少一个 `$y,`
     ($x:expr, $($y:expr),+) => (
-        // 对 `$x` 后面的 `$y` 们调用 `find_min!` 
+        // 对 `$x` 后面的 `$y` 们调用 `find_min!`
         std::cmp::min($x, find_min!($($y),+))
     )
 }
@@ -190,7 +190,7 @@ fn main() {
 
 通过提取函数或测试集的公共部分，宏可以让你写出 DRY 的代码（DRY 是 Don't Repeat Yourself 的缩写，意思为 “不要写重复代码”）。这里给出一个例子，对 `Vec<T>` 实现并测试了关于 `+=`、`*=` 和 `-=` 等运算符。
 
-```rust,editable
+```rust
 use std::ops::{Add, Mul, Sub};
 
 macro_rules! assert_equal_len {
@@ -265,7 +265,7 @@ DSL 是 Rust 的宏中集成的微型 “语言”。这种语言是完全合法
 
 比如说我想要定义一套小的计算器 API，可以传给它表达式，它会把结果打印到控制台上。
 
-```rust,editable
+```rust
 macro_rules! calculate {
     (eval $e:expr) => {{
         {
@@ -298,7 +298,7 @@ fn main() {
 
 我们可以把之前的 `calculater!` 宏改写成可变参数接口：
 
-```rust,editable
+```rust
 macro_rules! calculate {
     // 单个 `eval` 的模式
     (eval $e:expr) => {{
@@ -332,10 +332,10 @@ fn main() {
 
 本节实验中我们学习了以下的内容：
 
-* Rust 的宏
-* 创建宏的语法：模式与指示符，重载，重复
-* DRY (不写重复代码)
-* DSL (领域专用语言)
-* 可变参数接口
+- Rust 的宏
+- 创建宏的语法：模式与指示符，重载，重复
+- DRY (不写重复代码)
+- DSL (领域专用语言)
+- 可变参数接口
 
 请务必按照实验步骤将示例代码在实验环境中完整输入一遍，并完成动手练习题目。只有真正动手去做才会有最大的收获，遇到问题欢迎在 [实验楼讨论区](https://www.shiyanlou.com/questions/) 中发帖与同学讨论交流。
