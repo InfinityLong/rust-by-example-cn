@@ -22,8 +22,8 @@ enable_checker: true
 
 《通过例子学 Rust》（中文版与英文版 Rust By Example 均）使用以下两种协议的任一种进行授权：
 
-* Apache 2.0 授权协议，（[LICENSE-APACHE](LICENSE-APACHE) 或 http://www.apache.org/licenses/LICENSE-2.0）
-* MIT 授权协议 ([LICENSE-MIT](LICENSE-MIT) 或 http://opensource.org/licenses/MIT)
+- Apache 2.0 授权协议，（[LICENSE-APACHE](LICENSE-APACHE) 或 http://www.apache.org/licenses/LICENSE-2.0）
+- MIT 授权协议 ([LICENSE-MIT](LICENSE-MIT) 或 http://opensource.org/licenses/MIT)
 
 可以根据自己选择来定。
 
@@ -74,7 +74,7 @@ enable_checker: true
 
 这是传统的 Hello World 程序的源码。首先，在实验楼 WebIDE 中 `/home/project` 目录下新建 `hello.rs` 文件，编写以下代码（以 `//` 开头的注释内容可以不必输入）：
 
-```rust,editable
+```rust
 // 这是注释内容，将会被编译器忽略掉
 // 可以单击那边的按钮 "Run" 来测试这段代码 ->
 // 若想用键盘操作，可以使用快捷键 "Ctrl + Enter" 来运行
@@ -139,14 +139,17 @@ I'm a Rustacean!
 
 注释对任何程序都不可缺少，同样 Rust 支持几种不同的注释方式。
 
-* **普通注释**，其内容将被编译器忽略掉：
- - `// 单行注释，注释内容直到行尾。 `
- - `/* 块注释， 注释内容一直到结束分隔符。 */`
-* **文档注释**，其内容将被解析成 HTML 帮助文档:
- - `/// 为接下来的项生成帮助文档。`
- - `//! 为注释所属于的项（译注：如 crate、模块或函数）生成帮助文档。`
+- **普通注释**，其内容将被编译器忽略掉：
 
-```rust,editable
+* `// 单行注释，注释内容直到行尾。`
+* `/* 块注释， 注释内容一直到结束分隔符。 */`
+
+- **文档注释**，其内容将被解析成 HTML 帮助文档:
+
+* `/// 为接下来的项生成帮助文档。`
+* `//! 为注释所属于的项（译注：如 crate、模块或函数）生成帮助文档。`
+
+```rust
 fn main() {
     // 这是行注释的例子
     // 注意有两个斜线在本行的开头
@@ -177,23 +180,23 @@ fn main() {
 
 打印操作由 `std::fmt` 里面所定义的一系列 `宏` 来处理，包括：
 
-* `format!`：将格式化文本写到 `字符串`（String）。
+- `format!`：将格式化文本写到 `字符串`（String）。
 
   > 译注：`字符串` 是返回值不是参数。
 
-* `print!`：与 `format!` 类似，但将文本输出到控制台（`io::stdout`）。
+- `print!`：与 `format!` 类似，但将文本输出到控制台（`io::stdout`）。
 
-* `println!`: 与 `print!` 类似，但输出结果追加一个换行符。
+- `println!`: 与 `print!` 类似，但输出结果追加一个换行符。
 
-* `eprint!`：与 `format!` 类似，但将文本输出到标准错误（`io::stderr`）。
+- `eprint!`：与 `format!` 类似，但将文本输出到标准错误（`io::stderr`）。
 
-* `eprintln!`：与 `eprint!` 类似，但输出结果追加一个换行符。
+- `eprintln!`：与 `eprint!` 类似，但输出结果追加一个换行符。
 
 这些宏都以相同的做法解析（parse）文本。另外有个优点是格式化的正确性会在编译时检查。
 
 新建 `format.rs` 文件，编写代码如下。
 
-```rust,editable,ignore,mdbook-runnable
+```rust
 fn main() {
     // 通常情况下，`{}` 会被任意变量内容所替换。
     // 变量内容会转化成字符串。
@@ -239,8 +242,8 @@ fn main() {
 
 `std::fmt` 包含多种 `traits`（trait 有「特征，特性」等意思）来控制文字显示，其中重要的两种 trait 的基本形式如下：
 
-* `fmt::Debug`：使用 `{:?}` 标记。格式化文本以供调试使用。
-* `fmt::Display`：使用 `{}` 标记。以更优雅和友好的风格来格式化文本。
+- `fmt::Debug`：使用 `{:?}` 标记。格式化文本以供调试使用。
+- `fmt::Display`：使用 `{}` 标记。以更优雅和友好的风格来格式化文本。
 
 上例使用了 `fmt::Display`，因为标准库提供了那些类型的实现。若要打印自定义类型的文本，需要更多的步骤。
 
@@ -255,13 +258,13 @@ fn main() {
   timeout: 2
 ```
 
-* 改正上面代码中的两个错误（见代码注释中的「改正」），使它可以没有错误地运行。
+- 改正上面代码中的两个错误（见代码注释中的「改正」），使它可以没有错误地运行。
 
-* 再用一个 `println!` 宏，通过控制显示的小数位数来打印：`Pi is roughly 3.142`
- （Pi 约等于 3.142）。为了达到练习目的，使用 `let pi = 3.141592` 作为 Pi 的近似
- 值。
- 
- > 提示：设置小数位的显示格式可以参考文档 [std::fmt](https://doc.rust-lang.org/std/fmt)。
+- 再用一个 `println!` 宏，通过控制显示的小数位数来打印：`Pi is roughly 3.142`
+  （Pi 约等于 3.142）。为了达到练习目的，使用 `let pi = 3.141592` 作为 Pi 的近似
+  值。
+
+> 提示：设置小数位的显示格式可以参考文档 [std::fmt](https://doc.rust-lang.org/std/fmt)。
 
 ### 调试（Debug）
 
@@ -281,7 +284,7 @@ struct DebugPrintable(i32);
 
 所有 `std` 库类型都天生可以使用 `{:?}` 来打印。新建 `format1.rs` 文件，编写代码如下：
 
-```rust,editable
+```rust
 // 推导 `Structure` 的 `fmt::Debug` 实现。
 // `Structure` 是一个包含单个 `i32` 的结构体。
 #[derive(Debug)]
@@ -301,7 +304,7 @@ fn main() {
 
     // `Structure` 也可以打印！
     println!("Now {:?} will print!", Structure(3));
-    
+
     // 使用 `derive` 的一个问题是不能控制输出的形式。
     // 假如我只想展示一个 `7` 怎么办？
     println!("Now {:?} will print!", Deep(Structure(7)));
@@ -321,7 +324,7 @@ $ ./format1
 
 所以 `fmt::Debug` 确实使这些内容可以打印，但是牺牲了一些美感。Rust 也通过 `{:#?}` 提供了「美化打印」的功能：
 
-```rust,editable
+```rust
 #[derive(Debug)]
 struct Person<'a> {
     name: &'a str,
@@ -369,14 +372,14 @@ impl fmt::Display for Structure {
 
 `fmt::Display` 的效果可能比 `fmt::Debug` 简洁，但对于 `std` 库来说，这就有一个问题。模棱两可的类型该如何显示呢？举个例子，假设标准库对所有的 `Vec<T>` 都实现了同一种输出样式，那么它应该是哪种样式？下面两种中的一种吗？
 
-* `Vec<path>`：`/:/etc:/home/username:/bin`（使用 `:` 分割）
-* `Vec<number>`：`1,2,3`（使用 `,` 分割）
+- `Vec<path>`：`/:/etc:/home/username:/bin`（使用 `:` 分割）
+- `Vec<number>`：`1,2,3`（使用 `,` 分割）
 
 我们没有这样做，因为没有一种合适的样式适用于所有类型，标准库也并不擅自规定一种样式。对于 `Vec<T>` 或其他任意*泛型容器*（generic container），`fmt::Display` 都没有实现。因此在这些泛型的情况下要用 `fmt::Debug`。
 
 这并不是一个问题，因为对于任何**非**泛型的**容器**类型， `fmt::Display` 都能够实现。新建 `display.rs` 文件，编写代码如下：
 
-```rust,editable
+```rust
 use std::fmt; // （使用 `use`）导入 `fmt` 模块使 `fmt::Display` 可用
 
 // 带有两个数字的结构体。推导出 `Debug`，以便与 `Display` 的输出进行比较。
@@ -464,7 +467,7 @@ Debug: Complex { real: 3.3, imag: 7.2 }
 
 在 `write!` 上使用 `?` 会像是这样：
 
-```rust,ignore
+```rust
 // 对 `write!` 进行尝试（try），观察是否出错。若发生错误，返回相应的错误。
 // 否则（没有出错）继续执行后面的语句。
 write!(f, "{}", value)?;
@@ -473,13 +476,13 @@ write!(f, "{}", value)?;
 另外，你也可以使用 `try!` 宏，它和 `?` 是一样的。这种写法比较罗嗦，故不再推荐，
 但在老一些的 Rust 代码中仍会看到。使用 `try!` 看起来像这样：
 
-```rust,ignore
+```rust
 try!(write!(f, "{}", value));
 ```
 
 有了 `?`，对一个 `Vec` 实现 `fmt::Display` 就很简单了。新建 `vector.rs` 文件，编写代码如下：
 
-```rust,editable
+```rust
 use std::fmt; // 导入 `fmt` 模块。
 
 // 定义一个包含单个 `Vec` 的结构体 `List`。
@@ -528,7 +531,7 @@ fn main() {
 
 更改程序使 vector 里面每个元素的下标也能够打印出来。新的结果如下：
 
-```rust,ignore
+```rust
 [0: 1, 1: 2, 2: 3]
 ```
 
@@ -536,10 +539,10 @@ fn main() {
 
 我们已经看到，格式化的方式是通过**格式字符串**来指定的：
 
-* `format!("{}", foo)` -> `"3735928559"`
-* `format!("0x{:X}", foo)` ->
+- `format!("{}", foo)` -> `"3735928559"`
+- `format!("0x{:X}", foo)` ->
   `"0xDEADBEEF"`
-* `format!("0o{:o}", foo)` -> `"0o33653337357"`
+- `format!("0o{:o}", foo)` -> `"0o33653337357"`
 
 根据使用的**参数类型**是 `X`、`o` 还是**未指定**，同样的变量（`foo`）能够格式化成不同的形式。
 
@@ -547,7 +550,7 @@ fn main() {
 
 新建 `format2.rs` 文件，编写代码如下：
 
-```rust,editable
+```rust
 use std::fmt::{self, Formatter, Display};
 
 struct City {
@@ -624,8 +627,8 @@ RGB (0, 0, 0) 0x000000
 
 如果感到疑惑，可看下面两条提示：
 
- * 你[可能需要多次列出每个颜色](http://doc.rust-lang.org/std/fmt/#argument-types])，
- * 你可以使用 `:02` [补零使位数为 2 位](http://doc.rust-lang.org/std/fmt/#width)。
+- [你可能需要多次列出每个颜色](http://doc.rust-lang.org/std/fmt/#argument-types)，
+- 你可以使用 `:02` [补零使位数为 2 位](http://doc.rust-lang.org/std/fmt/#width)。
 
 ## 实验总结
 
@@ -638,4 +641,3 @@ RGB (0, 0, 0) 0x000000
 - 格式化输出
 
 请务必按照实验步骤将示例代码在实验环境中完整输入一遍，并完成动手练习题目。只有真正动手去做才会有最大的收获，遇到问题欢迎在 [实验楼讨论区](https://www.shiyanlou.com/questions/) 中发帖与同学讨论交流。
-

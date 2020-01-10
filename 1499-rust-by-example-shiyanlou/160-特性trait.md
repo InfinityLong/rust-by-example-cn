@@ -14,12 +14,12 @@ enable_checker: true
 
 本节实验的主要内容包括以下知识点：
 
-* trait 概念
-* 推导
-* 运算符重载
-* Drop
-* Iterators
-* Clone
+- trait 概念
+- 推导
+- 运算符重载
+- Drop
+- Iterators
+- Clone
 
 ## trait 概念
 
@@ -27,7 +27,7 @@ enable_checker: true
 
 对任何数据类型都可以实现 trait。在下面例子中，我们定义了包含一系列方法的 `Animal`。然后针对 `Sheep` 数据类型实现 `Animal trait`，因而 `Sheep` 的实例可以使用 `Animal` 中的所有方法。
 
-```rust,editable
+```rust
 struct Sheep { naked: bool, name: &'static str }
 
 trait Animal {
@@ -79,7 +79,7 @@ impl Animal for Sheep {
             "baaaaah!"
         }
     }
-    
+
     // 默认 trait 方法可以重载。
     fn talk(&self) {
         // 例如我们可以增加一些安静的沉思。
@@ -112,14 +112,14 @@ fn main() {
 
 下面以下是可以自动推导的 trait：
 
-* 比较 trait:`Eq`, `PartialEq`, `Ord`, `PartialOrd`
-* `Clone`, 用来从 `&T` 创建副本 `T`。
-* `Copy`，使类型具有 “复制语义”（copy semantics）而非 “移动语义”（move semantics）。
-* `Hash`，从 `&T` 计算哈希值（hash）。
-* `Default`, 创建数据类型的一个空实例。
-* `Debug`，使用 `{:?}` formatter 来格式化一个值。
+- 比较 trait:`Eq`, `PartialEq`, `Ord`, `PartialOrd`
+- `Clone`, 用来从 `&T` 创建副本 `T`。
+- `Copy`，使类型具有 “复制语义”（copy semantics）而非 “移动语义”（move semantics）。
+- `Hash`，从 `&T` 计算哈希值（hash）。
+- `Default`, 创建数据类型的一个空实例。
+- `Debug`，使用 `{:?}` formatter 来格式化一个值。
 
-```rust,editable
+```rust
 // `Centimeters`，可以比较的元组结构体
 #[derive(PartialEq, PartialOrd)]
 struct Centimeters(f64);
@@ -185,7 +185,7 @@ fn main() {
 
 会重载运算符的 `trait`（比如 `Add` 这种）可以在[这里][https://doc.rust-lang.org/core/ops/]查看。
 
-```rust,editable
+```rust
 use std::ops;
 
 struct Foo;
@@ -241,7 +241,7 @@ fn main() {
 
 下面示例给 `drop` 函数增加了打印到控制台的功能，用于宣布它在什么时候被调用（when it is called）。
 
-```rust,editable
+```rust
 struct Droppable {
     name: &'static str,
 }
@@ -303,8 +303,7 @@ fn main() {
 
 下面例子展示了如何使用 `Iterator` trait 的方法。
 
-
-```rust,editable
+```rust
 struct Fibonacci {
     curr: u32,
     next: u32,
@@ -314,7 +313,7 @@ struct Fibonacci {
 // `Iterator` trait 只需定义一个能返回 `next`（下一个）元素的方法。
 impl Iterator for Fibonacci {
     type Item = u32;
-    
+
     // 我们在这里使用 `.curr` 和 `.next` 来定义数列（sequence）。
     // 返回类型为 `Option<T>`：
     //     * 当 `Iterator` 结束时，返回 `None`。
@@ -384,7 +383,7 @@ fn main() {
 
 `Clone` trait 正好帮助我们完成这任务。通常，我们可以使用由 `Clone` trait 定义的 `.clone()` 方法。
 
-```rust,editable
+```rust
 // 不含资源的单元结构体
 #[derive(Debug, Clone, Copy)]
 struct Nil;
@@ -445,12 +444,11 @@ fn main() {
 
 本节实验中我们学习了以下的内容：
 
-* trait 概念
-* 推导
-* 运算符重载
-* Drop
-* Iterators
-* Clone
+- trait 概念
+- 推导
+- 运算符重载
+- Drop
+- Iterators
+- Clone
 
 请务必按照实验步骤将示例代码在实验环境中完整输入一遍，并完成动手练习题目。只有真正动手去做才会有最大的收获，遇到问题欢迎在 [实验楼讨论区](https://www.shiyanlou.com/questions/) 中发帖与同学讨论交流。
-
